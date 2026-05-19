@@ -687,6 +687,20 @@ footer p {
     }
 
     .recensione-card {
-        min-width: 280px;
+        background-color: var(--bianco);
+    
+        /* I NUOVI LIMITI DI LARGHEZZA */
+        width: 380px; /* Blocca la scheda a una larghezza fissa ed elegante su PC */
+        max-width: 85vw; /* Su smartphone, impedisce che esca fuori dallo schermo (85% della larghezza) */
+    
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+         border-bottom: 3px solid var(--oro);
+        text-align: left;
+    
+        flex-shrink: 0; 
+        scroll-snap-align: center; 
     }
+
 }
