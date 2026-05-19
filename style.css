@@ -85,8 +85,8 @@ header.scrolled {
 .logo-img {
     height: 70px;
     width: 70px; 
-    border-radius: 50% !important; /* Forza la forma a cerchio */
-    overflow: hidden !important;   /* Taglia gli angoli bianchi del file .ico */
+    border-radius: 50% !important; 
+    overflow: hidden !important;   
     object-fit: cover; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
     transition: all 0.4s ease;
@@ -166,7 +166,7 @@ nav a.active {
     margin-bottom: 20px;
 }
 
-/* --- DECORAZIONE TITOLI (ANTI-SFARFALLIO) --- */
+/* --- DECORAZIONE TITOLI --- */
 .decorazione {
     display: flex;
     align-items: center;
@@ -187,8 +187,12 @@ nav a.active {
     color: var(--oro);
 }
 
-/* --- BOTTONI --- */
+/* --- BOTTONI (CORRETTI: Non si spezzano più e il testo è centrato) --- */
 .btn-oro, button {
+    display: inline-block; /* Rende il bottone un blocco solido unico */
+    text-align: center;    /* Centra perfettamente il testo se va su due righe */
+    line-height: 1.4;      /* Spaziatura corretta tra le righe di testo */
+    
     background-color: var(--oro);
     color: var(--colore-scuro);
     border: none;
@@ -462,7 +466,7 @@ nav a.active {
     to {transform: scale(1); opacity: 1;}
 }
 
-/* --- STILE TABELLA LISTINO (Pasta Fresca) --- */
+/* --- STILE TABELLA LISTINO --- */
 #pasta-fresca {
     scroll-margin-top: 100px; 
 }
@@ -573,7 +577,9 @@ footer p {
 
 /* --- BOTTONE WHATSAPP --- */
 .btn-whatsapp {
-    display: inline-block;
+    display: inline-block; /* Rende il bottone un blocco compatto */
+    text-align: center;
+    line-height: 1.4;
     background-color: #25D366; 
     color: white;
     text-decoration: none;
@@ -597,7 +603,7 @@ footer p {
 }
 
 /* =========================================
-   RESPONSIVE DESIGN E TABLET (MAX 1024px)
+   RESPONSIVE DESIGN (IL MENU HAMBURGER SCATTA A 1200px!)
    ========================================= */
 
 .menu-toggle {
@@ -605,8 +611,8 @@ footer p {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    z-index: 10000; /* Fondamentale per i tocchi su iOS */
-    padding: 10px; /* Area di tocco più grande per le dita */
+    z-index: 10000; 
+    padding: 10px; 
 }
 
 .menu-toggle .bar {
@@ -617,8 +623,8 @@ footer p {
     border-radius: 3px;
 }
 
-/* Attiviamo il menu a tendina prima (a 1024px) per salvare il layout su iPad */
-@media (max-width: 1024px) {
+/* ATTENZIONE: Questo 1200px è il segreto per non far rompere mai la navbar */
+@media (max-width: 1200px) {
     
     .top-bar {
         font-size: 0.7rem;
@@ -640,7 +646,7 @@ footer p {
         right: 15px; 
     }
 
-    /* Il menu vero e proprio */
+    /* Trasforma la navbar nel menu a tendina */
     nav ul {
         position: absolute;
         top: 100%; 
@@ -663,13 +669,10 @@ footer p {
         margin: 15px 0;
     }
 
-    /* Salviamo il bottone dallo spezzarsi! */
+    /* Riduciamo leggermente l'imbottitura dei bottoni sui telefoni/tablet per comodità */
     .btn-oro, button, .btn-whatsapp {
-        padding: 12px 20px; /* Margini più stretti */
+        padding: 12px 20px; 
         font-size: 0.9rem;
-        line-height: 1.4;
-        white-space: normal; /* Permette al testo di andare a capo dolcemente */
-        display: inline-block;
     }
 
     .hero-title {
