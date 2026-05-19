@@ -56,8 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // --- 3. MENU HAMBURGER PER SMARTPHONE E TABLET ---
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('nav ul');
+
+    // Se il menu hamburger esiste, attivalo
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', function(e) {
+            e.preventDefault(); // Previene comportamenti strani su iOS/iPad
+            navMenu.classList.toggle('active');
+        });
+
+        // Chiudi il menu automaticamente quando tocchi un link (Home, Pasticceria, ecc.)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    }
     
 });
+
 // Effetto Shrink Header allo scorrimento
 window.onscroll = function() {
     const header = document.querySelector("header");
