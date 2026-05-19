@@ -85,11 +85,11 @@ header.scrolled {
 .logo-img {
     height: 70px;
     width: 70px; 
-    border-radius: 50%; 
+    border-radius: 50% !important; /* Forza la forma a cerchio */
+    overflow: hidden !important;   /* Taglia gli angoli bianchi del file .ico */
     object-fit: cover; 
-    box-shadow: 0 0 5px rgba(0,0,0,0.5); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
     transition: all 0.4s ease;
-    /* Evita vibrazioni dell'immagine durante il ridimensionamento */
     image-rendering: -webkit-optimize-contrast;
 }
 
@@ -142,12 +142,10 @@ nav a.active {
 .hero-content {
     max-width: 800px;
     z-index: 2;
-    
-    /* La vera magia anti-tremolio: blocca tutto il blocco come se fosse una singola immagine solida */
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px; /* Aiuta molto i dispositivi Apple/Safari a non sfarfallare */
+    perspective: 1000px; 
 }
 
 .hero-title {
@@ -180,9 +178,6 @@ nav a.active {
     content: '';
     width: 100px;
     margin: 0 15px;
-    
-    /* Invece di usare altezza e sfondo, usiamo un bordo solido. 
-       I browser "ancorano" i bordi ai pixel in modo molto più rigido! */
     height: 0;
     border-top: 2px solid var(--oro);
 }
@@ -268,7 +263,7 @@ nav a.active {
     margin-bottom: 15px;
 }
 
-/* --- NUOVO CAROSELLO SCORREVOLE PASTICCERIA --- */
+/* --- CAROSELLO SCORREVOLE PASTICCERIA --- */
 .carosello-pasticceria {
     display: flex;
     gap: 25px;
@@ -529,11 +524,8 @@ nav a.active {
 
 .recensione-card {
     background-color: var(--bianco);
-    
-    /* LIMITI DI LARGHEZZA CORRETTI */
     width: 380px; 
-    max-width: 85vw; /* Si adatta automaticamente agli schermi dei telefoni */
-    
+    max-width: 85vw; 
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -605,7 +597,7 @@ footer p {
 }
 
 /* =========================================
-   RESPONSIVE DESIGN (SMARTPHONE E TABLET)
+   RESPONSIVE DESIGN E TABLET (MAX 1024px)
    ========================================= */
 
 .menu-toggle {
@@ -613,6 +605,8 @@ footer p {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    z-index: 10000; /* Fondamentale per i tocchi su iOS */
+    padding: 10px; /* Area di tocco più grande per le dita */
 }
 
 .menu-toggle .bar {
@@ -623,7 +617,8 @@ footer p {
     border-radius: 3px;
 }
 
-@media (max-width: 768px) {
+/* Attiviamo il menu a tendina prima (a 1024px) per salvare il layout su iPad */
+@media (max-width: 1024px) {
     
     .top-bar {
         font-size: 0.7rem;
@@ -642,9 +637,10 @@ footer p {
     .menu-toggle {
         display: flex;
         position: absolute;
-        right: 25px; 
+        right: 15px; 
     }
 
+    /* Il menu vero e proprio */
     nav ul {
         position: absolute;
         top: 100%; 
@@ -656,6 +652,7 @@ footer p {
         padding: 20px 0;
         transition: left 0.4s ease; 
         box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        z-index: 9998;
     }
 
     nav ul.active {
@@ -664,6 +661,15 @@ footer p {
 
     nav ul li {
         margin: 15px 0;
+    }
+
+    /* Salviamo il bottone dallo spezzarsi! */
+    .btn-oro, button, .btn-whatsapp {
+        padding: 12px 20px; /* Margini più stretti */
+        font-size: 0.9rem;
+        line-height: 1.4;
+        white-space: normal; /* Permette al testo di andare a capo dolcemente */
+        display: inline-block;
     }
 
     .hero-title {
@@ -684,14 +690,12 @@ footer p {
         max-width: 350px;
     }
 
-    /* Adattiamo le card carosello sui telefoni più piccoli */
     .pasticcino-card {
         min-width: 260px;
         width: 260px;
     }
 
     .recensione-card {
-        /* Rimuoviamo i vecchi valori rigidi per far funzionare max-width: 85vw in automatico */
         min-width: auto;
     }
 }
