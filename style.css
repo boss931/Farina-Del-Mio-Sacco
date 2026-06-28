@@ -35,7 +35,7 @@ html {
 /* --- STRUTTURA PRINCIPALE (Gabbia anti-bug) --- */
 main {
     position: relative;
-    z-index: 1;
+    /* z-index rimosso per permettere al modale di andare in primissimo piano! */
 }
 
 /* --- TOP BAR PICCOLA --- */
@@ -55,7 +55,7 @@ header {
     z-index: 9999 !important;
     
     /* Stabilizzazione 3D per evitare micro-movimenti (jitter) */
-    transform: translate3d(0, 0, 0) !important; /* <--- MODIFICA APPLICATA QUI: 1000px diventato 0 */
+    transform: translate3d(0, 0, 0) !important; /* Modificato a 0 per non superare il modale */
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
     
