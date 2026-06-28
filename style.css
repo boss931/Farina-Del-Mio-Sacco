@@ -55,7 +55,7 @@ header {
     z-index: 9999 !important;
     
     /* Stabilizzazione 3D per evitare micro-movimenti (jitter) */
-    transform: translate3d(0, 0, 1000px) !important;
+    transform: translate3d(0, 0, 0) !important; /* <--- MODIFICA APPLICATA QUI: 1000px diventato 0 */
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
     
